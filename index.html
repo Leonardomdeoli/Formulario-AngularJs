@@ -1,0 +1,64 @@
+  <!DOCTYPE html>
+  <html lang="pt-br" ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Formulario</title>
+    <link rel="stylesheet" href="vendor/twitter/bootstrap3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/style.css"/>  
+  </head>
+  <body>
+  <div class="container" ng-controller="forca">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h1 class="text-center"><b>Formulário</b></h1>
+        </div>
+      </div>
+      <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <form novalidate ng-submit="enviar(theform.$valid)" name="theform" class="form">
+          <div class="form-group">
+            <label for="txtNome">Nome</label>
+            <input type="text" class="form-control" id="txtNome" placeholder="Nome" minlength=5 maxlength=30 name="nome" ng-model="user.name" required="true">
+            <div ng-show="theform.$subimitted || theform.nome.$touched">
+              <span ng-show="theform.nome.$error.required" class="label label-danger">Campo nome é obrigatorio</span>
+              <span ng-show="theform.nome.$error.minlength" class="label label-danger">Campo nome tem que ter no minimo 5 letras</span>
+               <span ng-show="theform.nome.$error.maxlength" class="label label-danger">Campo nome tem que ter no máximo 30 letras</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="txtEmail">Email</label>
+            <input type="email" class="form-control" id="txtEmail" placeholder="Email" name="email" ng-model="user.email"  required>
+            <div ng-show="theform.$subimitted || theform.email.$touched">
+              <span ng-show="theform.email.$error.required" class="label label-danger">Campo email é obrigatorio</span>
+              <span ng-show="theform.email.$error.email" class="label label-danger">Campo email formato inválido</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="txtQtd">Quantidade</label>
+            <input type="number" class="form-control" id="txtQtd"  ng-model="user.qdt" name="qdt" placeholder="Insira a quantidade" required>
+             <span ng-show="theform.qdt.$error.required && (theform.$subimitted || theform.qdt.$touched) " class="label label-danger">Campo quantidade é obrigatorio</span>
+          </div>
+          <div class="form-group">
+            <label for="txtData">Data</label>
+            <input type="date" class="form-control" id="txtData" ng-model="user.date" placeholder="Insira a Data"  required>
+          </div>
+          <button type="submit" class="btn btn-default">Enviar</button>
+        </form>
+        <br>
+        <pre>
+          {{theform|json}}
+        </pre>
+      </div>
+      </div>     
+   </div>
+    <script src="public/js/angular/angular.min.js"></script>
+    <script src="public/js/jquery/jquery-1.12.1.min.js"></script>
+    <script src="vendor/twitter/bootstrap3.3.6/js/bootstrap.min.js"></script>
+    <script src="public/js/angular/config.js"></script>
+    <script src="public/js/angular/controllers/controllers.js"></script>
+  </body>
+  </html>
+ 
